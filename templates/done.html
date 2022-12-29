@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="scroll">
+    <table>
+        <tr>
+            <th>Kotityö</th>
+            <th>Tekopäivä</th>
+            <th>Viimeinen tekopäivä</th>
+        </tr>
+    {% for j in jobs %}
+        <tr>
+            <td>{{j['name'] }}</td>
+            <td>{{j["added"] }}</td>
+            <td>{{j["final"] }}</td>
+            <td><a href="{{url_for('deldone', name=j['name'])}}" class="button">Poista</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

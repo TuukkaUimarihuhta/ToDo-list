@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="formplace">
+      <form action="/add/" method="post">
+            <h3>Lisää kotityö</h3>
+            <p>Kotityö:<br/> <select name="name" id="chores" onmousedown="if(this.options.length>4){this.size=4}" onchange="this.size=0;" onblur="this.size=0;" required></select> </p>
+            <p><input name="added" type="hidden" required> </p>
+            <p>Tekopäivä:<br/><input id="cal" class="typedate" type="date" name="final" required></p> <!-- Input type date toimii eri tavalla chromessa ja edgessä -->
+            <input class="typebtn" type="submit" value="Lisää">   <!-- kalenterin avaamista varten pitää painaa kalenteri iconia, pelkkä tekstin painaminen ei riitä -->
+            <input class="typebtn" type="reset" value="Pyyhi">
+      </form>
+</div>
+<div class="formexp">
+      <h1>Työn lisääminen</h1>
+      <p class="textstyle">
+            Valitse kotityö -kohdasta löydät listan eri kotitöistä.
+            Tekopäivä on viimeinen päivä, jolloin sinun vähintään tulisi tehdä valitsemasi kotityö.
+            Voit poistua painamalla tekemättömät tai tehdyt -nappia.
+      </p>
+</div>
+{% endblock %}

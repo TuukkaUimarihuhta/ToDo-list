@@ -1,0 +1,187 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
+    padding-bottom: 90px;
+    height: 75vh;
+}
+
+header {
+    background-color: brown;
+    color: white;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+header h1, h2 {
+    text-align: center;
+}
+
+header a{
+    font-size: 2.5vh;
+}
+
+footer {
+    background-color: brown;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+}
+
+table{
+    border: 2px solid BlanchedAlmond;
+    font-size: 2.5vh;
+    width: 100%;
+    padding 10px;
+    background-color: DarkSeaGreen;
+}
+th {
+    text-align: left;
+}
+
+td {
+    text-align: left;
+}
+
+form {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 2.5vh;
+    width: 100%;
+    height: 100%;
+    background-color: Azure;
+    text-align: center;
+}
+
+form input{
+    font-size: 2vh;
+}
+
+form select{
+    font-size: 2vh;
+}
+
+.typedate {
+    cursor: pointer;
+    background-color: white;
+    border : 1px solid black;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.typebtn {
+    cursor: pointer;
+}
+
+.button {
+    background-color: ForestGreen;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.header-button{
+bottom: 0;
+    background-color: Black;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.container {
+    background-color: CornflowerBlue;
+    width: auto;
+    height: 100%;
+}
+
+.leftie {
+    float: left;
+    word-wrap: break-word;
+    background-color: black;
+    width: 15vw;
+    height: 100%;
+}
+
+.rightie {
+    float: right;
+    word-wrap: break-word;
+    background-color: black;
+    width: 15vw;
+    height: 100%;
+}
+
+.rightie p{
+    margin: 10px;
+    font-size: 3vh;
+    border: 3px solid green;
+    background: lightblue;
+    text-align: center;
+}
+
+.leftie p{
+    margin: 10px;
+    margin-top: 10vh;
+    font-size: 3vh;
+    border: 3px solid green;
+    background: cyan;
+    text-align: center;
+}
+
+.scroll{
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 50vw;
+    height: 60vh;
+    overflow: auto;
+}
+
+.formplace{
+    float: left;
+    margin-left: 10vw;
+    margin-top: 15vh;
+    width: 20vw;
+    height: 45vh;
+}
+.formexp{
+    float: right;
+    margin-top: 15vh;
+    border: 2px solid blue;
+    border-radius: 10px;
+    background-color: lightgreen;
+    text-align: left;
+    word-wrap: break-word;
+    margin-right: 10vw;
+    width: 20vw;
+    height: 47vh;
+}
+
+.formexp h1{
+    text-align: center;
+}
+
+.formexp p{
+    font-size: 3vh;
+    margin-left: 10px;
+}
+
+.numstyle{
+    text-align: center;
+    font-weight: bold;
+}
+
+.textstyle{
+    font-weight: bold;
+    color: blue;
+}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="scroll">
+    <table>
+        <tr>
+            <th>Kotityö</th>
+            <th>Lisäyspäivä</th>
+            <th>Tekopäivä</th>
+        </tr>
+    {% for j in jobs %}
+        <tr>
+            <td><a href="{{url_for('hae_kotityo', name=j['name']) }}">{{ j['name'] }}</a></td>
+            <td>{{j["added"] }}</td>
+            <td>{{j["final"] }}</td>
+            <td><a href="{{url_for('doing', name=j['name'])}}" class="button">Tehty</a></td>
+            <td><a href="{{url_for('delete', name=j['name'])}}" class="button">Poista</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

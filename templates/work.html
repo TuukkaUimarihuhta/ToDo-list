@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if job %}
+<div class="formplace">
+    <form action="/update" method="post">
+        <h3>Muokkaa tekopäivää</h3>
+        <p class="textstyle"><input name="name" value="{{job['name']}}" type="hidden">Kotityö: {{job['name']}} </p>
+        <p class="textstyle"><input name="added" value="{{job['added']}}" type="hidden">Lisäyspäivä: {{job['added']}}</p>
+        <p class="textstyle">Nykyinen tekopäivä: {{job['final']}}</p>
+        <p>Tekopäivä:<br/><input onclick="caleDate()" id="cale" class="typedate" type="date" name="final" value="{{job['final']}}" required></p>
+        <input class="typebtn" type="submit" value="Päivitä">
+        <input class="typebtn" type="reset" value="Pyyhi">
+    </form>
+</div>
+<div class="formexp">
+    <h1>Tekopäivän vaihtaminen</h1>
+    <p class="textstyle">
+        Tässä näet kotityön tiedot, sekä nykyisen viimeisen tekopäivän.
+        Voit muokata viimeistä tekopäivää tässä.
+        Voit palata tästä takaisin painamalla joko tekemättömät tai tehdyt nappia.
+    </p>
+</div>
+{% else %}
+<p>Work not found</p>
+{% endif %}
+
+{% endblock %}
