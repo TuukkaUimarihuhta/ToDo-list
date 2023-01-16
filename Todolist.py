@@ -23,28 +23,34 @@ class Todo(db.Document):
     date = db.DateField() #Päiväämäärä, mikä päättää kotitöiden järjestyksen HTML:ssä
 
 @app.route("/")
+#Etusivu
 def home():
     job = Todo.objects
     for t in job:
-        if (datetime.utcnow() - t['deldate']) >= timedelta(days=0): #Kotityöt poistuvat listalta automaattisesti
-            job.delete()                                            #14 päivän päästä
+        #Kotityöt poistuvat listalta automaattisesti 14 päivän päästä
+        if (datetime.utcnow() - t['deldate']) >= timedelta(days=0):
+            job.delete()                                            
         else:
             pass
+    #Kotityöt näkyvät listassa Päivämäärän mukaan
     jobs = Todo.objects(tehty=False).order_by('date')
     return render_template("tekemattomat.html", jobs=jobs)
 
 @app.route("/tehdyt/")
+#Tehtyjen kotitöiden sivu
 def done():
         jobs = Todo.objects(tehty=True).order_by('date')
         return render_template("done.html", jobs=jobs)
 
 @app.route("/kotityö/<name>")
+# Valitsee kotityön, listalta
 def hae_kotityo(name):
     for s in Todo.objects:
         if s['name'] == name:
             return render_template("work.html", job=s)
 
 @app.route("/update", methods=["POST"])
+#Lomake, jolla voi päivittää tekemättömän kotityön tietoja
 def update():
     name = request.form["name"]
     deldate = today + timedelta(days=14)
@@ -59,11 +65,13 @@ def update():
     return render_template("tekemattomat.html", jobs=jobs)
 
 @app.route("/add/")
+#Avaa lomakkeen, jolla voidaan lisätä kotityö
 def add():
     jobs = Todo.objects(tehty=False).order_by('date')
     return render_template("add.html", jobs=jobs)
 
 @app.route("/add/", methods=["POST"])
+# Lomake jolla lisätään kotityö tekemättömien listaan
 def added():
     name = request.form['name']
     deldate = today + timedelta(days=14)
@@ -87,6 +95,7 @@ def added():
     return render_template("tekemattomat.html", jobs=jobs)
 
 @app.route("/tehty/<name>")
+# Päivittää kotityön tehdyksi, lisää sen tehtyjen listaan
 def doing(name):
     job = Todo.objects(name=name)
     job.update(tehty=True, added=today.strftime('%A %d.%m'))
@@ -94,6 +103,7 @@ def doing(name):
     return render_template("tekemattomat.html", jobs=jobs)
 
 @app.route("/Kotityöt/<name>")
+# Poistaa kotityön tekemättömien kotitöiden listasta, päivittää listan
 def delete(name):
     job = Todo.objects(name=name, tehty=False)
     job.delete()
@@ -101,6 +111,7 @@ def delete(name):
     return render_template("tekemattomat.html", jobs=jobs)
 
 @app.route("/tehdyt/<name>")
+# poistaa kotityön tehtyjen listasta, sekä päivittää listan
 def deldone(name):
     job = Todo.objects(name=name, tehty=True)
     job.delete()
