@@ -36,7 +36,7 @@ def home():
             pass
     #Kotityöt näkyvät listassa Päivämäärän mukaan
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("tekemattomat.html", jobs=jobs)
+    return render_template("undone.html", jobs=jobs)
 
 
 @app.route("/tehdyt/")
@@ -67,7 +67,7 @@ def update():
     jobs = Todo.objects(name=name, added=added, tehty=False)
     jobs.update(date=date, final=final, deldate=deldate)
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("tekemattomat.html", jobs=jobs)
+    return render_template("undone.html", jobs=jobs)
 
 @app.route("/add/")
 #Avaa lomakkeen, jolla voidaan lisätä kotityö
@@ -97,7 +97,7 @@ def added():
     job.save()
     jobs = Todo.objects(tehty=False).order_by('date')
 
-    return render_template("tekemattomat.html", jobs=jobs)
+    return render_template("undone.html", jobs=jobs)
 
 
 @app.route("/tehty/<name>")
@@ -106,7 +106,7 @@ def doing(name):
     job = Todo.objects(name=name)
     job.update(tehty=True, added=today.strftime('%A %d.%m'))
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("tekemattomat.html", jobs=jobs)
+    return render_template("undone.html", jobs=jobs)
 
 
 @app.route("/Kotityöt/<name>")
@@ -115,7 +115,7 @@ def delete(name):
     job = Todo.objects(name=name, tehty=False)
     job.delete()
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("tekemattomat.html", jobs=jobs)
+    return render_template("undone.html", jobs=jobs)
 
 
 @app.route("/tehdyt/<name>")
