@@ -7,11 +7,12 @@
     <title>Todo-lista</title>
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='javascript/todo.js') }}" rel="script"></script>
+
 </head>
-<body onload="chores(); calDate()">
+<body onload="chores(); calDate();">
     <header>
         <h1>TODO-lista</h1>
-        <a class="header-button" href="{{ url_for('home')}}">Tekemättömät</a>
+        <a class="header-button" href="{{ url_for('unfinished')}}">Tekemättömät</a>
         <a class="header-button" href="{{ url_for('done')}}">Tehdyt</a>
         <a class="header-button" href="{{ url_for('add')}}">Lisää kotityö</a>
     </header>
@@ -35,9 +36,8 @@
             {% block content %}{% endblock %}
     </div>
     <footer>
-        <h2>
-            Tervetuloa TODO-listaan.
-            Päivä on: <script>document.write(new Date().toLocaleDateString("fi-FI", options));</script>
+        <h2>Tervetuloa TODO-listaan. Päivä on:
+            <script>document.write(new Date().toLocaleDateString("fi-FI", options));</script>
         </h2>
     </footer>
 </body>

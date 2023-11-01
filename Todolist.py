@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify, make_response, render_template, abort
+from flask import Flask, request, render_template
 from flask_mongoengine import MongoEngine
 from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 
@@ -25,29 +26,29 @@ class Todo(db.Document):
 
 
 @app.route("/")
-#Etusivu
-def home():
+# Unfinished housework
+def unfinished():
     job = Todo.objects
     for t in job:
-        #Kotityöt poistuvat listalta automaattisesti 14 päivän päästä
+        # Housework is removed from list automatically after 14 days
         if (datetime.utcnow() - t['deldate']) >= timedelta(days=0):
             job.delete()
         else:
             pass
-    #Kotityöt näkyvät listassa Päivämäärän mukaan
+    # Housework are listed based on dates
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("undone.html", jobs=jobs)
+    return render_template("unfinished.html", jobs=jobs)
 
 
-@app.route("/tehdyt/")
-#Tehtyjen kotitöiden sivu
+@app.route("/finished")
+# Finished housework
 def done():
     jobs = Todo.objects(tehty=True).order_by('date')
-    return render_template("done.html", jobs=jobs)
+    return render_template("finished.html", jobs=jobs)
 
 
-@app.route("/kotityö/<name>")
-#Valitsee kotityön, listalta
+@app.route("/housework/<name>")
+# Choose housework from list
 def hae_kotityo(name):
     for s in Todo.objects:
         if s['name'] == name:
@@ -55,7 +56,7 @@ def hae_kotityo(name):
 
 
 @app.route("/update", methods=["POST"])
-#Lomake, jolla voi päivittää tekemättömän kotityön tietoja
+# Form that you can use to update the information of a housework
 def update():
     name = request.form["name"]
     deldate = today + timedelta(days=14)
@@ -67,16 +68,16 @@ def update():
     jobs = Todo.objects(name=name, added=added, tehty=False)
     jobs.update(date=date, final=final, deldate=deldate)
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("undone.html", jobs=jobs)
+    return render_template("unfinished.html", jobs=jobs)
 
 @app.route("/add/")
-#Avaa lomakkeen, jolla voidaan lisätä kotityö
+# Opens a form that can be used to add a housework
 def add():
     jobs = Todo.objects(tehty=False).order_by('date')
     return render_template("add.html", jobs=jobs)
 
 @app.route("/add/", methods=["POST"])
-#Lomake jolla lisätään kotityö tekemättömien listaan
+# Form that is used to add a housework
 def added():
     name = request.form['name']
     deldate = today + timedelta(days=14)
@@ -97,34 +98,34 @@ def added():
     job.save()
     jobs = Todo.objects(tehty=False).order_by('date')
 
-    return render_template("undone.html", jobs=jobs)
+    return render_template("unfinished.html", jobs=jobs)
 
 
-@app.route("/tehty/<name>")
-#Päivittää kotityön tehdyksi, lisää sen tehtyjen listaan
+@app.route("/finished/<name>")
+# Updates a housework as finished
 def doing(name):
     job = Todo.objects(name=name)
     job.update(tehty=True, added=today.strftime('%A %d.%m'))
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("undone.html", jobs=jobs)
+    return render_template("unfinished.html", jobs=jobs)
 
 
-@app.route("/Kotityöt/<name>")
-#Poistaa kotityön tekemättömien kotitöiden listasta, päivittää listan
+@app.route("/unfinished/<name>")
+# Deletes a housework from the list of unfinished houseworks
 def delete(name):
     job = Todo.objects(name=name, tehty=False)
     job.delete()
     jobs = Todo.objects(tehty=False).order_by('date')
-    return render_template("undone.html", jobs=jobs)
+    return render_template("unfinished.html", jobs=jobs)
 
 
-@app.route("/tehdyt/<name>")
-#poistaa kotityön tehtyjen listasta, sekä päivittää listan
+@app.route("/finish/<name>")
+# Deletes housework from the finished housework list
 def deldone(name):
     job = Todo.objects(name=name, tehty=True)
     job.delete()
     jobs = Todo.objects(tehty=True).order_by('date')
-    return render_template("done.html", jobs=jobs)
+    return render_template("finished.html", jobs=jobs)
 
 
 if __name__ == '__main__':

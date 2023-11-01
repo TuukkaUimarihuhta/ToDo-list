@@ -1,8 +1,7 @@
 body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f1f1f1;
-    padding-bottom: 90px;
-    height: 75vh;
+    height: 74.3vh;
 }
 
 header {
