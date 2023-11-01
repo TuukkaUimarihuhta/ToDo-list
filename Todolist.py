@@ -30,7 +30,7 @@ class Todo(db.Document):
 def unfinished():
     job = Todo.objects
     for t in job:
-        # Housework is removed from list automatically after 14 days
+        # Housework is removed from list automatically after 14 days pass
         if (datetime.utcnow() - t['deldate']) >= timedelta(days=0):
             job.delete()
         else:
