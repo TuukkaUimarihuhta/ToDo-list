@@ -11,4 +11,4 @@ mongoengine 0.24.1
 WTForms 3.0.1
 Werkzeug 2.1.1
 
-You also need MongoDBCompass: https://www.mongodb.com/products/tools/compass
+You can use MongoDBCompass for the data: https://www.mongodb.com/products/tools/compass
