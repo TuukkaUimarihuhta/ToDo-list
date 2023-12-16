@@ -17,12 +17,12 @@ today = datetime.utcnow()
 
 
 class Todo(db.Document):
-    name = db.StringField(required=True)  # Kotityön nimi
-    added = db.StringField(required=True)  # Lisäyspäivä, joka näkyy HTML:ssä
-    final = db.StringField(required=True)  # Viimeinen tekopäivä, näkyy HTML:ssä
-    tehty = db.BooleanField(required=True)  # Merkkaa kotityön tehdyksi
-    deldate = db.DateTimeField()  # Päivämäärä, jonka mukaan työ poistuu automaattisesti
-    date = db.DateField()  # Päiväämäärä, mikä päättää kotitöiden järjestyksen HTML:ssä
+    name = db.StringField(required=True)  # Name of the housework
+    added = db.StringField(required=True)  # The date housework was added
+    final = db.StringField(required=True)  # Last date to do the housework
+    tehty = db.BooleanField(required=True)  # Mark the housework as done
+    deldate = db.DateTimeField()  # The date on which the housework is automatically removed
+    date = db.DateField()  # Date that decides the order housework are listed
 
 
 @app.route("/")
