@@ -1,4 +1,4 @@
-To Do-list that allows you to pick from basic housework into a list, working HTML frontend and Python mongodb based backend
+To-do-list that allows you to pick from basic housework into a list, working HTML frontend and Python mongodb based backend
 
 For this to work your python interpreter will need:
 Flask 2.1.1
