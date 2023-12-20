@@ -1,4 +1,4 @@
-Todo-list that allows you to pick from basic housework into a list, working HTML frontend and Python mongodb based backend
+To-do-list that allows you to pick from basic housework into a list, working HTML frontend and Python mongodb based backend
 
 For this to work your python interpreter will need:
 Flask 2.1.1
@@ -11,4 +11,4 @@ mongoengine 0.24.1
 WTForms 3.0.1
 Werkzeug 2.1.1
 
-You can use MongoDBCompass for the data: https://www.mongodb.com/products/tools/compass
+MongoDBCompass was also used: https://www.mongodb.com/products/tools/compass
