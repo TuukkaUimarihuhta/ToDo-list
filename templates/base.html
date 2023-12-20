@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Todo-lista</title>
+    <title>To Do-lista</title>
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='javascript/todo.js') }}" rel="script"></script>
 
 </head>
 <body onload="chores(); calDate();">
     <header>
-        <h1>TODO-lista</h1>
+        <h1>To-do-lista</h1>
         <a class="header-button" href="{{ url_for('unfinished')}}">Tekemättömät</a>
         <a class="header-button" href="{{ url_for('done')}}">Tehdyt</a>
         <a class="header-button" href="{{ url_for('add')}}">Lisää kotityö</a>
@@ -19,16 +19,16 @@
     <div class="container">
         <div class="leftie">
             <p>
-                Tässä on Todo-lista, johon voit lisätä kotitöitä valmiista listasta,
+                Tässä on to-do-lista, johon voit lisätä kotitöitä valmiista listasta,
                 sekä lisätä kotitöiden viimeisen tekopäivän.
                 Järjestys, jossa kotityöt näkyvät listassa, tulee viimeisen tekopäivän mukaan.
             </p>
         </div>
         <div class="rightie">
             <p>
-                Lisää kotityö painamalla Lisää kotityö -nappia.
-                Kun olet tehnyt kotityön siirrä se tehtyjen listaan painamalla Tehty  -nappia.
-                Tehdyt -napista pääset tarkastelemaan tehtyjä kotitöitä.
+                Lisää kotityö painamalla "Lisää kotityö" -nappia.
+                Kun olet tehnyt kotityön siirrä se tehtyjen listaan painamalla "Tehty" -nappia.
+                "Tehdyt" -napista pääset tarkastelemaan tehtyjä kotitöitä.
                 Voit poistaa kotityöt manuaalisesti, tai odottaa kaksi viikkoa,
                 jonka jälkeen kotityöt poistuvat automaattisesti.
             </p>
@@ -36,7 +36,7 @@
             {% block content %}{% endblock %}
     </div>
     <footer>
-        <h2>Tervetuloa TODO-listaan. Päivä on:
+        <h2>Tervetuloa to-do-listaan. Päivä on:
             <script>document.write(new Date().toLocaleDateString("fi-FI", options));</script>
         </h2>
     </footer>

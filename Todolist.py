@@ -111,7 +111,7 @@ def doing(name):
 
 
 @app.route("/unfinished/<name>")
-# Deletes a housework from the list of unfinished houseworks
+# Deletes a housework from the list of unfinished housework
 def delete(name):
     job = Todo.objects(name=name, tehty=False)
     job.delete()
